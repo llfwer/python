@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from robogif.version import VERSION
 from distutils.core import setup
+
+from robogif.version import VERSION
 
 setup(name='robogif',
       version=VERSION,
@@ -11,22 +12,25 @@ setup(name='robogif',
       license="Apache",
       author_email='jernej@virag.si',
       packages=['robogif'],
-      install_requires=['blessings==1.6', 'Click==4.1.0'],
-      entry_points='''
-        [console_scripts]
-        robogif=robogif.recorder:run
-      ''',
+      install_requires=[
+          'blessings==1.6',
+          'Click==4.1.0'
+      ],
+      entry_points={
+          'console_scripts': [
+              'robogif = robogif.recorder:run',
+          ]},
       url="https://github.com/izacus/RoboGif",
       classifiers=[
-        "License :: OSI Approved :: Apache Software License",
-        "Operating System :: Microsoft :: Windows",
-        "Operating System :: MacOS :: MacOS X",
-        "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 3",
-        "Environment :: Console",
-        "Intended Audience :: Developers",
-        "Topic :: Utilities"
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: POSIX :: Linux",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 2",
+          "Programming Language :: Python :: 3",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Topic :: Utilities"
       ]
-     )
+      )

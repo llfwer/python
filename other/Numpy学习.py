@@ -29,7 +29,7 @@ def l_poly():
 
 # 导入数据
 def l_data():
-    data = np.loadtxt('data/populations.txt')
+    data = np.loadtxt('../data/populations.txt')
     print(data)
     # np.savetxt('data/test.txt', data)
 
