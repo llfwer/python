@@ -4,6 +4,14 @@ import pdfkit
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
 
+def generate_from_network():
+    options = {
+        'page-size': 'A4',
+        'orientation': 'Landscape',
+        'encoding': 'utf-8',
+    }
+    pdfkit.from_url('http://www.taobao.com', '../data/demo.pdf', options=options)
+
 def generate_from_string():
     options = {
         'page-size': 'A4',
@@ -46,4 +54,4 @@ def pick_up_pdf(start, end):
     out_stream.close()
 
 
-generate_from_url()
+generate_from_network()

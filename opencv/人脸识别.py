@@ -27,7 +27,7 @@ def face_test():
 
 
 def demo():
-    cap = cv2.VideoCapture("my.mp4")
+    cap = cv2.VideoCapture("data/women.mp4")
 
     def process(image):
         grey1 = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -110,4 +110,4 @@ def track():
     cv2.waitKey(0)
 
 
-track()
+demo()

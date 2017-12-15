@@ -81,7 +81,7 @@ def l_curve():
 
 # 图像处理
 def l_image():
-    img = mpimg.imread('data/stinkbug.png')
+    img = mpimg.imread('../data/stinkbug.png')
     # 从单通道模拟彩色图像
     # lum_img = img[:, :, 0]
     imshow = plt.imshow(img)
