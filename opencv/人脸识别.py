@@ -110,4 +110,4 @@ def track():
     cv2.waitKey(0)
 
 
-demo()
+face_test()

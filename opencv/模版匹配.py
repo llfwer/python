@@ -180,4 +180,5 @@ def match():
     # img3 = cv2.drawMatchesKnn(img1_gray,kp1,img2_gray,kp2,good[:10],flag=2)
     cv2.waitKey(0)
 
-# match()
+
+template_match()
