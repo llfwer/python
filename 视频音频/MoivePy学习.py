@@ -4,7 +4,7 @@ from moviepy.editor import *
 
 
 def deal_replace_voice():
-    path = '../opencv/data'
+    path = '../图像处理/data'
     name = 'women'
     video = VideoFileClip(r"{}/{}.mp4".format(path, name), audio=False)
     v_duration = video.duration  # 视频时间长短

@@ -5,7 +5,7 @@ import subprocess
 
 # 从视频获取帧
 def get_frame():
-    path = '../opencv/data/women.mp4'
+    path = '../图像处理/data/women.mp4'
     strcmd = "ffmpeg -i " + path + " -r 10 -f image2 " + "data/%06d.jpg"
     subprocess.call(strcmd, shell=True)
 
