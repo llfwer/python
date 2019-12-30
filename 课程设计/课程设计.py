@@ -81,14 +81,19 @@ def sort_total_score(file):
 def statistics_score(file):
     data = pandas.read_excel(file)
 
+    length = len(data)
+
     max_english = 0
     min_english = 0
+    sum_english = 0
     max_math = 0
     min_math = 0
+    sum_math = 0
     max_program = 0
     min_program = 0
+    sum_program = 0
 
-    for i in range(len(data)):
+    for i in range(length):
         item = data.loc[i]
 
         score_english = item.loc['英语']
@@ -102,25 +107,29 @@ def statistics_score(file):
             min_math = score_math
             max_program = score_program
             min_program = score_program
+        else:
+            if max_english < score_english:
+                max_english = score_english
+            if min_english > score_english:
+                min_english = score_english
 
-        if max_english < score_english:
-            max_english = score_english
-        if min_english > score_english:
-            min_english = score_english
+            if max_math < score_math:
+                max_math = score_math
+            if min_math > score_math:
+                min_math = score_math
 
-        if max_math < score_math:
-            max_math = score_math
-        if min_math > score_math:
-            min_math = score_math
+            if max_program < score_program:
+                max_program = score_program
+            if min_program > score_program:
+                min_program = score_program
 
-        if max_program < score_program:
-            max_program = score_program
-        if min_program > score_program:
-            min_program = score_program
+        sum_english += score_english
+        sum_math += score_math
+        sum_program += score_program
 
-    print('英语-最高分:{0},最低分:{1}'.format(max_english, min_english))
-    print('高数-最高分:{0},最低分:{1}'.format(max_math, min_math))
-    print('C语言-最高分:{0},最低分:{1}'.format(max_program, min_program))
+    print('英语:最高分:{0},最低分:{1},平均分:{2}'.format(max_english, min_english, round(sum_english / length, 2)))
+    print('高数:最高分:{0},最低分:{1},平均分:{2}'.format(max_math, min_math, round(sum_math / length, 2)))
+    print('C语言:最高分:{0},最低分:{1},平均分:{2}'.format(max_program, min_program, round(sum_program / length, 2)))
 
 
 # 查找学生成绩信息
@@ -147,6 +156,8 @@ def map_distribution(file):
     list_math = [0 for x in range(0, 10)]
     list_program = [0 for x in range(0, 10)]
 
+    score_range = [[0, 9], [10, 19], [20, 29], [30, 39], [40, 49], [50, 59], [60, 69], [70, 79], [80, 89], [90, 100]]
+
     for i in range(len(data)):
         item = data.loc[i]
 
@@ -154,71 +165,24 @@ def map_distribution(file):
         score_math = item.loc['高数']
         score_program = item.loc['C语言']
 
-        if 0 <= score_english < 10:
-            list_english[0] += 1
-        if 10 <= score_english < 20:
-            list_english[1] += 1
-        if 20 <= score_english < 30:
-            list_english[2] += 1
-        if 30 <= score_english < 40:
-            list_english[3] += 1
-        if 40 <= score_english < 50:
-            list_english[4] += 1
-        if 50 <= score_english < 60:
-            list_english[5] += 1
-        if 60 <= score_english < 70:
-            list_english[6] += 1
-        if 70 <= score_english < 80:
-            list_english[7] += 1
-        if 80 <= score_english < 90:
-            list_english[8] += 1
-        if 90 <= score_english <= 100:
-            list_english[9] += 1
+        for index in range(len(score_range)):
+            item_range = score_range[index]
 
-        if 0 <= score_math < 10:
-            list_math[0] += 1
-        if 10 <= score_math < 20:
-            list_math[1] += 1
-        if 20 <= score_math < 30:
-            list_math[2] += 1
-        if 30 <= score_math < 40:
-            list_math[3] += 1
-        if 40 <= score_math < 50:
-            list_math[4] += 1
-        if 50 <= score_math < 60:
-            list_math[5] += 1
-        if 60 <= score_math < 70:
-            list_math[6] += 1
-        if 70 <= score_math < 80:
-            list_math[7] += 1
-        if 80 <= score_math < 90:
-            list_math[8] += 1
-        if 90 <= score_math <= 100:
-            list_math[9] += 1
+            start = item_range[0]
+            end = item_range[1]
 
-        if 0 <= score_program < 10:
-            list_program[0] += 1
-        if 10 <= score_program < 20:
-            list_program[1] += 1
-        if 20 <= score_program < 30:
-            list_program[2] += 1
-        if 30 <= score_program < 40:
-            list_program[3] += 1
-        if 40 <= score_program < 50:
-            list_program[4] += 1
-        if 50 <= score_program < 60:
-            list_program[5] += 1
-        if 60 <= score_program < 70:
-            list_program[6] += 1
-        if 70 <= score_program < 80:
-            list_program[7] += 1
-        if 80 <= score_program < 90:
-            list_program[8] += 1
-        if 90 <= score_program <= 100:
-            list_program[9] += 1
+            if start <= score_english <= end:
+                list_english[index] += 1
+
+            if start <= score_math <= end:
+                list_math[index] += 1
+
+            if start <= score_program <= end:
+                list_program[index] += 1
 
     name_list = ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '90-100']
 
+    # 中文乱码问题
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus'] = False
 
@@ -228,11 +192,19 @@ def map_distribution(file):
     plt.xlabel('分数段')
     plt.ylabel('人数')
 
+    for name, score in zip(name_list, list_english):
+        if score > 0:
+            plt.text(name, score + 0.1, '{0}人'.format(score), ha='center', va='bottom')
+
     plt.figure()
     plt.bar(name_list, list_math)
     plt.title('高数成绩分布图')
     plt.xlabel('分数段')
     plt.ylabel('人数')
+
+    for name, score in zip(name_list, list_math):
+        if score > 0:
+            plt.text(name, score + 0.1, '{0}人'.format(score), ha='center', va='bottom')
 
     plt.figure()
     plt.bar(name_list, list_program)
@@ -240,12 +212,40 @@ def map_distribution(file):
     plt.xlabel('分数段')
     plt.ylabel('人数')
 
-    plt.show()
+    for name, score in zip(name_list, list_program):
+        if score > 0:
+            plt.text(name, score + 0.1, '{0}人'.format(score), ha='center', va='bottom')
 
-    print(list_english)
-    print(list_math)
-    print(list_program)
+    plt.show()
 
 
 if __name__ == '__main__':
-    map_distribution(file_name)
+    while True:
+        print('''=============学生成绩管理系统=============
+            1、数据读取
+            2、数据处理(计算总分,数据不能包含总分列)
+            3、数据排序
+            4、统计分数
+            5、查询学生成绩
+            6、数据分布柱状图展示
+            7、退出
+            ========================================
+            ''')
+
+        choice = input('请选择:')
+
+        if choice == '1':
+            read_data(file_name)
+        elif choice == '2':
+            handle_data(file_name)
+        elif choice == '3':
+            sort_total_score(file_name)
+        elif choice == '4':
+            statistics_score(file_name)
+        elif choice == '5':
+            input_name = input('请输入学生姓名:')
+            find_student(file_name, input_name)
+        elif choice == '6':
+            map_distribution(file_name)
+        elif choice == '7':
+            break
