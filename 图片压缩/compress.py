@@ -2,6 +2,7 @@ import os
 
 import tinify
 
+# https://tinypng.com/ LuoLianFeng 272389862@qq.com 每个月免费500次请求
 tinify.key = "XHHxNfx3MSGS4WgFbYWJFr2YJxGLlVsb"
 
 
