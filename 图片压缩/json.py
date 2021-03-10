@@ -35,7 +35,10 @@ def replace_json(path):
 
             json_text = json_text.replace(file, 'data:image/png;base64,' + ls_f.decode('utf-8', 'ignore'))
 
-    json2 = open(os.path.join(dir_path, 'data1.json'), 'w', encoding='UTF-8')
+    fold_path = os.path.dirname(dir_path)
+    fold_name = os.path.basename(dir_path)
+
+    json2 = open(os.path.join(fold_path, 'data' + fold_name + '.json'), 'w', encoding='UTF-8')
     json2.write(json_text)
     json2.close()
 
