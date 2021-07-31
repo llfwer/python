@@ -96,7 +96,7 @@ def add_check(name_check):
 
 
 def get_item_name(item_type, url_item):
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36 Aoyou/Sl5lQzRzLXdqSUYNZUV2TVLZytH5xkt9eTm6kC_NW1rEVt97sWFO-O3K'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36 Aoyou/bEE3bkFuPDBWcTZHZCZ-NObnTdnRw33krAOpSefQNX_B0FsnPl4-Xmy9'}
     url = Request(url_item, headers=headers)
     html = request.urlopen(url).read().decode('utf8')
     html[:60]
