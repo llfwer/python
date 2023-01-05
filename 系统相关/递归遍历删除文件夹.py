@@ -1,6 +1,7 @@
 import os.path
 import re
 import shutil
+import sys
 
 
 def clear_module(root):
@@ -72,5 +73,17 @@ def clear_project(root):
                     os.unlink(p)
 
 
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
+    if argv[1] is not None:
+        clear_project(argv[1])
+
+
+"""
+    使用方法:
+        python 递归遍历删除文件夹.py E:\Demo3
+"""
 if __name__ == '__main__':
-    clear_project(r"E:\Demo9")
+    main()
+    # clear_project(r"E:\Demo6")
