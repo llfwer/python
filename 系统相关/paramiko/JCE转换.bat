@@ -1,5 +1,5 @@
 @echo off 
 
-python C:\Users\ROWE\PycharmProjects\python\系统相关\paramiko\转换jce.py %1
+python E:\python\绯荤粺鐩稿叧\paramiko\杞崲jce.py %1
 
 pause
