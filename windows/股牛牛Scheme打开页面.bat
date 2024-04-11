@@ -3,7 +3,7 @@
 : 输入url
 set /p url=请输入url :
 : 调用python
-python C:\Users\ROWE\PycharmProjects\python\windows\UrlEncode.py "%url%" > Output
+python E:\python\windows\UrlEncode.py "%url%" > Output
 : 接收返回值
 set /p encodeurl=<Output
 echo %encodeurl%
